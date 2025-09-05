@@ -1,0 +1,44 @@
+<h2>Checkout</h2>
+<div class="checkout">
+  <section class="left">
+    <h3>Shipping Address</h3>
+    <form (submit)="$event.preventDefault(); placeOrder()">
+      <label>Full Name <input [(ngModel)]="address.fullName" name="fullName" required /></label>
+      <label>Address Line 1 <input [(ngModel)]="address.line1" name="line1" required /></label>
+      <label>Address Line 2 <input [(ngModel)]="address.line2" name="line2" /></label>
+      <div class="grid2">
+        <label>City <input [(ngModel)]="address.city" name="city" required /></label>
+        <label>State <input [(ngModel)]="address.state" name="state" required /></label>
+      </div>
+      <div class="grid2">
+        <label>Postal Code <input [(ngModel)]="address.postalCode" name="postalCode" required /></label>
+        <label>Country <input [(ngModel)]="address.country" name="country" required /></label>
+      </div>
+
+      <h3>Payment</h3>
+      <label>Cardholder Name <input [(ngModel)]="payment.cardholder" name="cardholder" required /></label>
+      <label>Card Number <input [(ngModel)]="payment.cardNumber" name="cardNumber" maxlength="19" required /></label>
+      <div class="grid2">
+        <label>Expiry (MM/YY) <input [(ngModel)]="payment.expiry" name="expiry" maxlength="5" required /></label>
+        <label>CVC <input [(ngModel)]="payment.cvc" name="cvc" maxlength="4" required /></label>
+      </div>
+
+      <div class="actions">
+        <button type="submit" [disabled]="loading">{{ loading ? 'Placing Order...' : 'Place Order' }}</button>
+        <div class="error" *ngIf="error">{{ error }}</div>
+      </div>
+    </form>
+  </section>
+
+  <aside class="right" *ngIf="(cart.observe() | async) as items">
+    <h3>Order Summary</h3>
+    <div class="line" *ngFor="let it of items">
+      <span>{{ it.product.name }} × {{ it.quantity }}</span>
+      <span>\${{ (it.product.price*it.quantity/100) | number:'1.2-2' }}</span>
+    </div>
+    <div class="line total">
+      <span>Total</span>
+      <span>\${{ (cart.subtotal()/100) | number:'1.2-2' }}</span>
+    </div>
+  </aside>
+</div>

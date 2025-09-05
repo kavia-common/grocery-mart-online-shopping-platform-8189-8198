@@ -1,0 +1,7 @@
+<h2>Login</h2>
+<form class="auth-form" (submit)="$event.preventDefault(); submit()">
+  <label>Email <input [(ngModel)]="email" type="email" required name="email"></label>
+  <label>Password <input [(ngModel)]="password" type="password" required name="password"></label>
+  <button type="submit" [disabled]="loading">{{ loading ? 'Logging in...' : 'Login' }}</button>
+  <div class="error" *ngIf="error">{{ error }}</div>
+</form>

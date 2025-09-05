@@ -1,0 +1,24 @@
+h2 { margin: 0.5rem 0 1rem; }
+.order {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  background: #fff;
+}
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.items .item {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px dashed #e5e7eb;
+  padding: 0.25rem 0;
+}
+.id { font-weight: 700; }
+.total { font-weight: 700; color: #388e3c; }
+.status { color: #6b7280; }

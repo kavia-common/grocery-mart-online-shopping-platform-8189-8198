@@ -1,59 +1,48 @@
-# Angular
+# Grocery Mart Frontend (Angular)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+A modern, minimalistic Angular (v19.2.1) frontend for the Grocery Mart online shopping platform.
 
-## Development server
+Features:
+- Browse products by category (sidebar navigation)
+- Global search for products
+- Add/remove items to/from cart with floating cart summary
+- User authentication and registration
+- Order summary and checkout
+- Order history (user-specific)
+- Responsive layout (mobile & desktop)
+- Light theme using colors: primary #388e3c, accent #ff7043, secondary #ffeb3b
 
-To start a local development server, run:
+Getting started:
+- Install dependencies: npm install
+- Start dev server: npm start
+  - The app runs at http://localhost:3000/
 
-```bash
-ng serve
-```
+Environment:
+- REST API base URL is read from window.__env.API_BASE_URL if present; otherwise defaults to /api.
+- In deployment, map your .env to set API base (e.g., API_BASE_URL=https://api.example.com).
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Project structure (key parts):
+- src/app/layout: Global layout (header, sidebar, main outlet, floating cart, footer)
+- src/app/pages/products: Product grid
+- src/app/pages/cart: Cart details
+- src/app/pages/checkout: Checkout form
+- src/app/pages/auth: Login/Register
+- src/app/pages/orders: Order history and confirmation
+- src/app/services: api, cart, auth services
+- src/app/guards: auth route guard
 
-## Code scaffolding
+Notes:
+- This app expects a backend exposing REST endpoints:
+  - GET /api/categories
+  - GET /api/products?q=&categoryId=
+  - POST /api/auth/login
+  - POST /api/auth/register
+  - GET /api/auth/me
+  - POST /api/orders
+  - GET /api/orders/my
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Security:
+- Auth token is stored in localStorage for simplicity. For production, consider more robust session handling.
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+License:
+- Internal project.

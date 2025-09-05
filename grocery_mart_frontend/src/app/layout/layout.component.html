@@ -1,0 +1,62 @@
+<header class="header">
+  <div class="brand">
+    <a routerLink="/products">Grocery Mart</a>
+  </div>
+  <form class="search" (submit)="$event.preventDefault(); search()">
+    <input [(ngModel)]="q" name="q" type="search" placeholder="Search for products..." />
+    <button type="submit">Search</button>
+  </form>
+  <nav class="nav">
+    <a routerLink="/orders" routerLinkActive="active">Orders</a>
+    <a routerLink="/login" *ngIf="!(auth.observe() | async) as user">Login</a>
+    <a routerLink="/register" *ngIf="!(auth.observe() | async)">Register</a>
+    <div class="user" *ngIf="auth.observe() | async as user">
+      <span class="username">{{ user.name || user.email }}</span>
+      <button class="logout" (click)="logout()">Logout</button>
+    </div>
+  </nav>
+</header>
+
+<div class="content">
+  <aside class="sidebar">
+    <h3>Categories</h3>
+    <a routerLink="/products" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">All</a>
+    <a *ngFor="let c of categories" [routerLink]="['/category', c.slug]">{{ c.name }}</a>
+  </aside>
+
+  <main class="main">
+    <router-outlet></router-outlet>
+  </main>
+
+  <section class="cart-float" *ngIf="(cart.observe() | async) as items">
+    <div class="cart-header">
+      <span>Cart</span>
+      <span class="badge">{{ cart.count() }}</span>
+    </div>
+    <div class="cart-items" *ngIf="items.length; else empty">
+      <div class="item" *ngFor="let it of items">
+        <div class="title">{{ it.product.name }}</div>
+        <div class="qty">
+          <button (click)="cart.updateQuantity(it.product.id, it.quantity - 1)">-</button>
+          <span>{{ it.quantity }}</span>
+          <button (click)="cart.updateQuantity(it.product.id, it.quantity + 1)">+</button>
+        </div>
+        <div class="price">\${{ (it.product.price * it.quantity / 100) | number:'1.2-2' }}</div>
+        <button class="remove" (click)="cart.remove(it.product.id)">×</button>
+      </div>
+      <div class="subtotal">
+        Subtotal: <strong>\${{ (cart.subtotal() / 100) | number:'1.2-2' }}</strong>
+      </div>
+      <a class="checkout-btn" routerLink="/checkout">Checkout</a>
+      <a class="view-cart" routerLink="/cart">View Cart</a>
+    </div>
+    <ng-template #empty>
+      <div class="empty">Your cart is empty</div>
+    </ng-template>
+  </section>
+</div>
+
+<footer class="footer">
+  <div>© {{ year }} Grocery Mart</div>
+  <div>Open daily 8am - 9pm | Support: support&#64;grocerymart.example</div>
+</footer>
