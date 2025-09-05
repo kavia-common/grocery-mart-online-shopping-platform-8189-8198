@@ -1,0 +1,4 @@
+{
+    "command": "npm install --legacy-peer-deps && npm run build",
+    "working_directory": "/home/kavia/workspace/code-generation/grocery-mart-online-shopping-platform-8189-8198/grocery_mart_frontend"
+}
