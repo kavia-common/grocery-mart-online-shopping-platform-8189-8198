@@ -1,0 +1,8 @@
+<h2>Create account</h2>
+<form class="auth-form" (submit)="$event.preventDefault(); submit()">
+  <label>Name <input [(ngModel)]="name" required name="name"></label>
+  <label>Email <input [(ngModel)]="email" type="email" required name="email"></label>
+  <label>Password <input [(ngModel)]="password" type="password" required name="password"></label>
+  <button type="submit" [disabled]="loading">{{ loading ? 'Creating account...' : 'Register' }}</button>
+  <div class="error" *ngIf="error">{{ error }}</div>
+</form>

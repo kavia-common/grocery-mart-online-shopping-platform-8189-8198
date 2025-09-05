@@ -1,0 +1,32 @@
+<h2>Your Cart</h2>
+<div *ngIf="(cart.observe() | async) as items">
+  <div *ngIf="items.length; else empty">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product</th><th>Price</th><th>Qty</th><th>Subtotal</th><th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let it of items">
+          <td>{{ it.product.name }}</td>
+          <td>\${{ (it.product.price/100) | number:'1.2-2' }}</td>
+          <td>
+            <button (click)="cart.updateQuantity(it.product.id, it.quantity - 1)">-</button>
+            <span class="qty">{{ it.quantity }}</span>
+            <button (click)="cart.updateQuantity(it.product.id, it.quantity + 1)">+</button>
+          </td>
+          <td>\${{ (it.product.price*it.quantity/100) | number:'1.2-2' }}</td>
+          <td><button class="remove" (click)="cart.remove(it.product.id)">Remove</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="summary">
+      <div>Subtotal: <strong>\${{ (cart.subtotal()/100) | number:'1.2-2' }}</strong></div>
+      <a class="btn" routerLink="/checkout">Proceed to Checkout</a>
+    </div>
+  </div>
+  <ng-template #empty>
+    <p>Your cart is empty.</p>
+  </ng-template>
+</div>

@@ -1,0 +1,17 @@
+<h2>My Orders</h2>
+<div class="orders">
+  <div class="order" *ngFor="let o of orders">
+    <div class="row">
+      <div class="id">#{{ o.id }}</div>
+      <div class="date">{{ o.createdAt | date:'medium' }}</div>
+      <div class="total">\${{ (o.total/100) | number:'1.2-2' }}</div>
+      <div class="status">{{ o.status || 'confirmed' }}</div>
+    </div>
+    <div class="items">
+      <div class="item" *ngFor="let it of o.items">
+        <span>{{ it.name }} × {{ it.quantity }}</span>
+        <span>\${{ (it.price * it.quantity/100) | number:'1.2-2' }}</span>
+      </div>
+    </div>
+  </div>
+</div>

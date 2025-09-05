@@ -1,0 +1,61 @@
+.checkout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 1rem;
+}
+h2 { margin: 0.5rem 0 1rem; }
+h3 { margin: 1rem 0 0.5rem; }
+label {
+  display: block;
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+input {
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-top: 0.25rem;
+}
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.actions {
+  margin-top: 1rem;
+}
+button {
+  background: #388e3c;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.error {
+  color: #b91c1c;
+  margin-top: 0.5rem;
+}
+.right {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 0.75rem;
+  height: fit-content;
+}
+.line {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0;
+  border-bottom: 1px dashed #e5e7eb;
+}
+.line.total {
+  font-weight: 700;
+  border-bottom: none;
+  margin-top: 0.5rem;
+}
+@media (max-width: 1024px) {
+  .checkout {
+    grid-template-columns: 1fr;
+  }
+}

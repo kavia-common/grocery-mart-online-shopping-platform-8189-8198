@@ -1,0 +1,39 @@
+h2 { margin: 0.5rem 0 1rem; }
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+.qty {
+  display: inline-block;
+  min-width: 2rem;
+  text-align: center;
+}
+button {
+  border: 1px solid #e5e7eb;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+.remove {
+  color: #ef4444;
+  border: none;
+}
+.summary {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  align-items: center;
+}
+.btn {
+  background: #388e3c;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+}
